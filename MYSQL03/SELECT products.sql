@@ -47,6 +47,43 @@ SELECT name, price
     FROM products;
 SELECT round(8.4);
 
+SELECT * FROM products;
+SELECT 
+	SUM(price) AS 'total'
+    FROM products
+    WHERE category_id = 2;
 
+SELECT AVG(price) FROM products 
+	WHERE category_id = 2; 
 
+-- ¿Qué productos son los más baratos?
+SELECT MIN(price) AS "lowest_price"
+	FROM products;
+
+SELECT MAX(price) AS "max_price"
+	FROM products;
+-- consultas anidadas
+SELECT name, price
+	FROM products
+    WHERE price = (SELECT MIN(price) FROM products);
+
+SELECT name, price
+	FROM products
+    WHERE price = (SELECT MAX(price) FROM products);
+
+-- Mostrar 3 productos más baratos
+SELECT name, price
+	FROM products
+    ORDER BY price ASC LIMIT 3;
+    
+-- Mostrar 3 productos más caros
+SELECT name, price
+	FROM products
+    ORDER BY price DESC LIMIT 3;
+
+SELECT category_id, AVG (price) AS "avg"
+	FROM products
+    WHERE category_id IS NOT NULL
+    GROUP BY category_id
+    HAVING avg > 90;
 

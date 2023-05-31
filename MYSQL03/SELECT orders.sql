@@ -45,8 +45,8 @@ CREATE VIEW orders_delivery AS
     ORDER BY delivery_time DESC, delivery_date DESC;
 
 -- Procedimiento almacenado
-CALL show_delivery_time(1);
-
+CALL show_delivery_time(1); -- Este procedimiento almacenado se creo con ayuda del IDE.
+-- Crear un procedimiento almacenado de forma manual.
 DELIMITER $$
 CREATE PROCEDURE show_delivery_time_manual(IN days INT)
 BEGIN
@@ -55,6 +55,6 @@ SELECT *,
 	FROM orders 
     WHERE datediff(delivery_date, purchase_date) >= days
     ORDER BY delivery_time DESC;
-END $$
-DELIMITER ;
-
+END 
+$$ DELIMITER ;
+CALL show_delivery_time_manual(5);
